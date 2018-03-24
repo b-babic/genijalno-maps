@@ -1,0 +1,18 @@
+.navbar {
+  position: relative;
+  width: 100%;
+
+  .link {
+    margin: 1em;
+    text-decoration: none;
+  }
+}
+
+.link {
+  text-decoration: none;
+  margin: 1em;
+}
+
+.active {
+  color: tomato;
+}

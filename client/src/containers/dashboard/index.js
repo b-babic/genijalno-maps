@@ -1,7 +1,13 @@
-import React from "react";
+import React, { Component } from "react";
+import Navigation from "../../components/Nav";
 
-const Dashboard = () => {
-  return <div>dash</div>;
-};
-
-export default Dashboard;
+export default class Dashboard extends Component {
+  render() {
+    return (
+      <div>
+        <Navigation />
+        <main>map should be down here</main>
+      </div>
+    );
+  }
+}
