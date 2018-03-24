@@ -8,7 +8,8 @@ const User = require('../models/user');
 
 // register new user route 
 router.post('/register', (req, res) => {
-    // check if passwords sent in request are matching 
+    // check if passwords sent in request are matching
+    debugger;
     if (req.body.password !== req.body.passwordConfirm) {
         res.status(400).json({
             success: false,
@@ -88,3 +89,72 @@ router.post('/register', (req, res) => {
 }) // post register
 
 // login existing user route
+router.post('/login', (req, rest) => {
+    // get username and email required for login form 
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // check if user exists in db 
+    User.findOne({
+        username: username
+    }, (err, user) => {
+        if (err) {
+            throw err;
+        } // error check 
+
+        // if user dont exist 
+        if (!user) {
+            return res.status(400).json({
+                success: false,
+                msg: 'User not found!'
+            });
+        } // check user
+
+        // if user exists use bcrypt for password comparison 
+        bcrypt.compare(password, user.password, function (err, isMatch) {
+            // passwords err
+            if (err) {
+                throw err
+            } // err
+
+            //no errors, pws are matched
+            if (isMatch) {
+                // generate jwt token 
+                const token = jwt.sign(user, config.secret, {
+                    expiresIn: 604800 // jwt expire in 1 week
+                }); // token
+
+                // return user object back without pw
+                return res.json({
+                    success: true,
+                    token: 'JWT ' + token,
+                    user: {
+                        id: user._id,
+                        name: user.name,
+                        email: user.email,
+                        username: user.username
+                    } // user object 
+                }); // return user 
+            } // match
+            else {
+                return res.status(400).json({
+                    success: false,
+                    msg: 'Wrong password.'
+                });
+            } // wrong password
+        }) // compare pw
+    }) // find user 
+}) // post login
+
+// dummy profile check
+router.get('/profile', passport.authenticate('jwt', {
+    session: false
+}), (req, res) => {
+    res.json({
+        user: req.user
+    });
+})
+
+
+// export router 
+module.exports = router;
