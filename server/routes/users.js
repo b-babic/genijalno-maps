@@ -9,7 +9,7 @@ const User = require('../models/user');
 // register new user route 
 router.post('/register', (req, res) => {
     // check if passwords sent in request are matching
-    debugger;
+    console.log(req)
     if (req.body.password !== req.body.passwordConfirm) {
         res.status(400).json({
             success: false,
@@ -89,7 +89,7 @@ router.post('/register', (req, res) => {
 }) // post register
 
 // login existing user route
-router.post('/login', (req, rest) => {
+router.post('/login', (req, res) => {
     // get username and email required for login form 
     const username = req.body.username;
     const password = req.body.password;
@@ -155,6 +155,12 @@ router.get('/profile', passport.authenticate('jwt', {
     });
 })
 
+router.get('/test', (req, res) => {
+    return res.status(200).json({
+        success: true,
+        msg: 'test'
+    })
+})
 
 // export router 
 module.exports = router;

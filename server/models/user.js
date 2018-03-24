@@ -93,7 +93,7 @@ UserSchema.pre('save', function (next) {
         return next();
     }
 
-    bcrypt.genSalt(10, (err, satlt) => {
+    bcrypt.genSalt(10, (err, salt) => {
         if (err) {
             return next(err);
         }

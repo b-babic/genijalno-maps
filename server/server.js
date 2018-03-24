@@ -28,26 +28,23 @@ const app = express();
 
 // set up public folder if needed
 app.use(express.static('public'));
-// set up body parse library 
-app.use(bodyParser.json());
 // passport middleware for dummy auth
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cors());
+// passport config
 require('./config/passport')(passport);
+
+//bodyParser after routes initialization
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+app.use(bodyParser.json({
+    type: '*/*'
+}));
 
 // routes middleware 
 app.use('/api/users', require('./routes/users'));
-
-// default express error handling middleware 
-app.use(function (err, req, res, next) {
-    if (res.headersSent) {
-        return next(err);
-    }
-
-    res.status(400).json({
-        err: err
-    });
-});
 
 // finally start the server 
 const port = process.env.PORT || 3000;
