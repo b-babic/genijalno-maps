@@ -1,7 +1,21 @@
 import React, { Component } from "react";
+import Login from "../login";
+import { Link } from "react-router-dom";
+//import './style.css';
 
-export default class HomeInitial extends Component {
+class LandingAuth extends Component {
   render() {
-    return <h1>HOME INITIAL SCREEN</h1>;
+    return (
+      <div className="landing-auth form-container-wrapper">
+        <Login />
+        <div className="landing-auth-signup">
+          <Link to="/signup">
+            Click here to <b>sign up</b>
+          </Link>
+        </div>
+      </div>
+    );
   }
 }
+
+export default LandingAuth;

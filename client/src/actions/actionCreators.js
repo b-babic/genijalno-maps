@@ -2,6 +2,7 @@ import "whatwg-fetch";
 import {
   AUTH_ERROR,
   AUTH_ERROR_RESET,
+  AUTH_USER,
   AUTH_LOADING,
   AUTH_LOADED,
   GET_USER_DATA,
@@ -30,6 +31,40 @@ export const authLoading = () => ({
 export const authLoaded = () => ({
   type: AUTH_LOADED
 });
+
+export const signinUser = ({ username, password }) => {
+  return function(dispatch) {
+    dispatch({ type: AUTH_LOADING });
+    return fetch(`${ROOT_URL}/api/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username,
+        password
+      })
+    })
+      .then(response => response.json())
+      .then(responseJson => {
+        // if req is good & auth'd
+        // update state to auth'd
+        dispatch({ type: AUTH_USER });
+        dispatch({ type: "FETCH_ADMIN_DATA", payload: username });
+        // save JWT in localStorage
+        localStorage.setItem("token", responseJson.token);
+        // save admin email in localStorage
+        localStorage.setItem("adminEmail", responseJson.user.email);
+        dispatch({ type: AUTH_LOADED });
+      })
+      .catch(err => {
+        dispatch(
+          authError("Your email or password is incorrect. \n Please try again.")
+        );
+        dispatch({ type: AUTH_LOADED });
+      });
+  };
+};
 
 // USER DATA
 export const loadingUserData = payload => ({
