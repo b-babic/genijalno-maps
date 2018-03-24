@@ -120,7 +120,7 @@ router.post('/login', (req, res) => {
             //no errors, pws are matched
             if (isMatch) {
                 // generate jwt token 
-                const token = jwt.sign(user, config.secret, {
+                const token = jwt.sign(user.toJSON(), config.secret, {
                     expiresIn: 604800 // jwt expire in 1 week
                 }); // token
 
