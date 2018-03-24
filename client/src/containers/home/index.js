@@ -1,7 +1,26 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+// initial screen
+import HomeInitial from "../initial";
 
-const Home = () => {
-  return <div>home</div>;
-};
+class Home extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const { isAuthenticated } = this.props;
 
-export default Home;
+    if (isAuthenticated) {
+      return <Redirect to="/user" />;
+    }
+
+    return <HomeInitial />;
+  }
+}
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.authenticated
+});
+
+export default connect(mapStateToProps, null)(Home);
