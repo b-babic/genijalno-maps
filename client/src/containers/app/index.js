@@ -1,0 +1,22 @@
+import React from "react";
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import Home from "../home";
+import Dashboard from "../dashboard";
+import Signout from "../signout";
+import Signup from "../signup";
+
+const NotFound = () => <h2>404 Not Found!</h2>;
+
+const App = () => (
+  <Router>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/user" component={Dashboard} />
+      <Route exact path="/signout" component={Signout} />
+      <Route exact path="/signup" component={Signup} />
+      <Route component={NotFound} />
+    </Switch>
+  </Router>
+);
+
+export default App;
