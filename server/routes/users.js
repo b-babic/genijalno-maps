@@ -4,7 +4,9 @@ const bcrypt = require('bcrypt-nodejs');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const config = require('../config/db');
+// models
 const User = require('../models/user');
+const UserData = require('../models/userData');
 
 // register new user route 
 router.post('/register', (req, res) => {
@@ -155,11 +157,15 @@ router.get('/profile', passport.authenticate('jwt', {
     });
 })
 
-router.get('/test', (req, res) => {
-    return res.status(200).json({
-        success: true,
-        msg: 'test'
-    })
+router.get('/data', (req, res) => {
+    // get usersData
+    UserData.find({}, (err, entries) => {
+        if (err) {
+            return next(err);
+        } else {
+            res.send(entries);
+        }
+    });
 })
 
 // export router 

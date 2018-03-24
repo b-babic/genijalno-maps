@@ -45,7 +45,6 @@ app.use(bodyParser.json({
 
 // routes middleware 
 app.use('/api/users', require('./routes/users'));
-
 // finally start the server 
 const port = process.env.PORT || 3000;
 
