@@ -1,14 +1,37 @@
 import "whatwg-fetch";
 import {
+  AUTH_ERROR,
+  AUTH_ERROR_RESET,
+  AUTH_LOADING,
+  AUTH_LOADED,
   GET_USER_DATA,
   LOADING_USER_DATA,
-  LOADED_FIRST_USER_DATA,
   LOADED_USER_DATA,
+  LOADED_FIRST_USER_DATA,
   GET_USER_DATA_ERROR
 } from "./constants";
 
 import { ROOT_URL } from "../api";
 
+// AUTH
+export const authError = error => ({
+  type: AUTH_ERROR,
+  payload: error
+});
+
+export const authErrorReset = () => ({
+  type: AUTH_ERROR_RESET
+});
+
+export const authLoading = () => ({
+  type: AUTH_LOADING
+});
+
+export const authLoaded = () => ({
+  type: AUTH_LOADED
+});
+
+// USER DATA
 export const loadingUserData = payload => ({
   type: LOADING_USER_DATA
 });
