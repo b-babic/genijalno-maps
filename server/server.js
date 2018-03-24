@@ -4,7 +4,7 @@ const express = require('express'),
     cors = require('cors'),
     path = require('path'),
     passport = require('passport'),
-    config = require('./config/config');
+    config = require('./config/db');
 
 // Use node's default promise instead of Mongoose promise library
 mongoose.Promise = global.Promise;
