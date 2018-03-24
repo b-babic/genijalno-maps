@@ -4,6 +4,8 @@ import styles from "./styles.scss";
 // nav link
 import { NavLink } from "react-router-dom";
 
+console.warn("scss", styles);
+
 class Navigation extends Component {
   constructor(props) {
     super(props);
@@ -12,16 +14,18 @@ class Navigation extends Component {
   }
 
   handleRenderLogoutLink() {
-    const authenticated = this.props.isAuthenticated;
-
-    if (authenticated) {
-      return <NavLink to="/signout" className={styles.link} />;
+    if (this.props.isAuthenticated) {
+      return (
+        <NavLink className={styles.navLink} to="/signout">
+          Sign out
+        </NavLink>
+      );
     }
   }
 
   render() {
     return (
-      <nav className="navbar">
+      <nav className={styles.navbar}>
         <NavLink
           exact
           to="/user"
