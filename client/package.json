@@ -4,11 +4,9 @@
   "description": "React redux google maps interaction",
   "main": "index.js",
   "scripts": {
-    "start":
-      "PORT=1234 node ./node_modules/react-scripts/bin/react-scripts.js start",
+    "start": "PORT=1234 node ./node_modules/react-scripts/bin/react-scripts.js start",
     "build": "node ./node_modules/react-scripts/bin/react-scripts.js build",
-    "test":
-      "node ./node_modules/react-scripts/bin/react-scripts.js test --env=jsdom",
+    "test": "node ./node_modules/react-scripts/bin/react-scripts.js test --env=jsdom",
     "eject": "node ./node_modules/react-scripts/bin/react-scripts.js eject"
   },
   "author": "Benjamin Babic",
@@ -23,6 +21,7 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
-    "react-scripts": "^1.1.1"
+    "react-scripts": "^1.1.1",
+    "whatwg-fetch": "^2.0.3"
   }
 }
