@@ -3,6 +3,7 @@ import {
   AUTH_ERROR,
   AUTH_ERROR_RESET,
   AUTH_USER,
+  UNAUTH_USER,
   AUTH_LOADING,
   AUTH_LOADED,
   GET_USER_DATA,
@@ -50,8 +51,8 @@ export const signinUser = ({ username, password }) => {
         // if req is good & auth'd
         // update state to auth'd
         dispatch({ type: AUTH_USER });
-        dispatch({ type: "FETCH_ADMIN_DATA", payload: username });
         // save JWT in localStorage
+        console.warn("TOKEN", responseJson);
         localStorage.setItem("token", responseJson.token);
         // save admin email in localStorage
         localStorage.setItem("adminEmail", responseJson.user.email);
@@ -61,6 +62,68 @@ export const signinUser = ({ username, password }) => {
         dispatch(
           authError("Your email or password is incorrect. \n Please try again.")
         );
+        dispatch({ type: AUTH_LOADED });
+      });
+  };
+};
+
+// SIGN OUT
+export const signoutUser = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("email");
+  return {
+    type: UNAUTH_USER
+  };
+};
+
+// SIGN UP USER
+export const signupUser = ({
+  name,
+  email,
+  username,
+  password,
+  passwordConfirm
+}) => {
+  return function(dispatch) {
+    dispatch({ type: AUTH_LOADING });
+    return fetch(`${ROOT_URL}/api/users/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        username,
+        password,
+        passwordConfirm
+      })
+    })
+      .then(response => response.json())
+      .then(responseJson => {
+        console.warn("msg", responseJson.msg.length);
+        if (responseJson.error || responseJson.msg.length > 0) {
+          console.warn("ERROR IN RESPONSE", responseJson.error);
+          dispatch(authError(responseJson.error || responseJson.msg));
+          dispatch({ type: AUTH_LOADED });
+          return false;
+        } else {
+          // if req is good & auth'd
+          // update state to auth'd
+          console.warn("SHOULD AUTH NOW AND FETCH EMAIL", responseJson);
+          dispatch({ type: AUTH_USER });
+          // save JWT in localStorage
+          localStorage.setItem("token", responseJson.token);
+          // save admin email in localStorage
+          localStorage.setItem("email", responseJson.user.email);
+          dispatch({ type: AUTH_LOADED });
+        }
+      })
+      .catch(err => {
+        // console.log('error in signupUser: ', err);
+        // dispatch(authError(err.response.data.error));
+        console.warn("ERROR IN SIGNUP");
+        dispatch(authError("Error in signup..."));
         dispatch({ type: AUTH_LOADED });
       });
   };

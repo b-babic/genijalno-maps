@@ -1,0 +1,103 @@
+@import "./vars-space";
+
+$master-palette: (
+  primary: #21d4fd,
+  secondary: #b721ff,
+  info: #3381ff,
+  success: #4caf50,
+  danger: #f44336,
+  warning: #ff9800,
+  shine: #e91e63
+) !default;
+// body
+$body-font-family: "Helvetica Neue", "PingFang SC", "Hiragino Sans GB",
+  "Microsoft YaHei", "Hiragino Kaku Gothic Pro", Meiryo, "Malgun Gothic",
+  sans-serif !default;
+
+$color-primary: map-get($master-palette, "primary") !default;
+$grey-darkest: #161616 !default;
+$grey-dark: #333333 !default; // text, heading
+$grey-base: #4d4c4c !default;
+$grey-light: #888888 !default; // meta, help, muted
+$grey-lighter: #e4e4e3 !default; // disabled
+$grey-lightest: #fdffff !default; // bg, hover-bg
+
+$color-black: #000 !default;
+$color-white: #fff !default;
+
+// colors used for form validation etc.
+$color-success: #4caf50 !default;
+$color-danger: #f44336 !default;
+$color-warning: #ff9800 !default;
+
+//typography
+$heading-color: $grey-dark !default;
+$text-color: $grey-dark !default;
+$muted-color: $grey-light !default;
+
+// body
+$body-bg: $color-white !default;
+$body-color: $text-color !default;
+
+// borders and dividers
+$divider-color: #e5e5e5 !default;
+$border-color: #ddd !default;
+$border-width: 1px !default;
+$border-radius-sm: 2px !default;
+$border-radius-base: 3px !default;
+$border-radius-lg: 5px !default;
+
+// headings
+$heading-line-height: 1.2 !default;
+$fontSize-h1: 32px !default;
+$fontSize-h2: 28px !default;
+$fontSize-h3: 24px !default;
+$fontSize-h4: 20px !default;
+$fontSize-h5: 18px !default;
+$fontSize-h6: 14px !default;
+
+$font-size-base: 14px !default; // default text size of body, elements, components
+$font-size-lg: 16px !default; // large text size of elements, components
+$font-size-sm: 12px !default; // small text size of meta-text, elements, components
+//links
+$link-color: #0073aa !default;
+$link-decoration: none !default;
+$link-hover-decoration: none !default;
+//fonts
+$font-size-base: 14px !default; // default text size of body, elements, components
+$font-size-lg: 16px !default; // large text size of elements, components
+$font-size-sm: 12px !default; // small text size of meta-text, elements, components
+//lineheight
+$line-height-base: 1.42857143 !default;
+$line-height-computed: round($font-size-base * $line-height-base); // 20px
+
+//navbar
+$navbar-bg-color: #313443;
+$navbar-tooltip-bg-color: $navbar-bg-color;
+$active-navbar-link-color: #22252e;
+$hover-navbar-link-color: $active-navbar-link-color;
+// Form
+// -----------------------------------------------------------------------------
+$form-field-margin-bottom: $space-stack-base !default;
+$form-label-margin-bottom: $space-stack-xs !default;
+$form-help-margin-top: $space-stack-xs !default;
+$form-input-padding-y: $space-squish-base-y !default;
+$form-input-padding-x: $space-squish-base-x !default;
+
+$form-input-color: $text-color !default;
+$form-input-placeholder-color: $muted-color !default;
+$form-input-bg: $color-white !default;
+$form-input-bg-disabled: $grey-lightest !default;
+$form-input-active-border-color: map-get($master-palette, "primary") !default;
+$form-input-border-color: #ccc !default;
+$form-input-border-width: $border-width !default;
+$form-input-border-radius: $border-radius-base !default;
+$form-input-addon-bg: $grey-lightest !default;
+$form-input-icon-padding: $space-l !default;
+$form-checkbox-border-radius: 0 !default;
+$form-input-height-computed: round(
+  ($form-input-padding-y + $form-input-border-width) * 2 + $line-height-computed
+); // 34px
+$form-switch-color: $color-white !default;
+$form-switch-bg-color: $grey-lighter !default;
+$form-switch-active-color: $color-success !default;

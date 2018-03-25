@@ -1,0 +1,89 @@
+.logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+}
+
+.emoji {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #ff3c41;
+  display: inline-block;
+  position: relative;
+  margin: 20px 20px 50px 20px;
+
+  .eyes,
+  .mouth {
+    animation: sad 1s ease-in-out infinite;
+  }
+  .eyes {
+    position: absolute;
+    left: 50%;
+    width: 60px;
+    top: 80px;
+    &::before,
+    &::after {
+      content: "";
+      background: black;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      animation: blinkeyes 3s ease-in-out infinite 1s;
+    }
+    &::before {
+      float: left;
+    }
+    &::after {
+      float: right;
+      left: 100px;
+      top: 50px;
+    }
+  } // eyes
+
+  .mouth {
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    transform: translate(-50%, -50%);
+    border-top: 6px solid black;
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+    border-bottom: 8px solid transparent;
+    width: 25px;
+    height: 10px;
+    border-top-right-radius: 1999px;
+    border-top-left-radius: 1999px;
+  } // mouth
+}
+
+@keyframes sad {
+  0% {
+    transform: translate(-60%, -50%);
+  }
+  60% {
+    transform: translate(-40%, -50%);
+  }
+  100% {
+    transform: translate(-60%, -50%);
+  }
+}
+
+@keyframes blinkeyes {
+  0% {
+    transform: scaleY(1);
+  }
+  97% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(0);
+  }
+}
+
+a {
+  color: inherit;
+}

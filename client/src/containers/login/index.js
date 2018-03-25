@@ -11,6 +11,9 @@ import {
   authErrorReset
 } from "../../actions/actionCreators";
 
+//styles
+import styles from "./style.scss";
+
 class Login extends Component {
   constructor() {
     super();
@@ -48,6 +51,7 @@ class Login extends Component {
 
     return (
       <Form
+        className={styles.form}
         fields={{
           username: this.state.fields.username,
           password: this.state.fields.password
@@ -81,13 +85,12 @@ class Login extends Component {
               <div className="form-error-text">{errorMessage}</div>
             )}
 
-            <button
-              className="form-submit-button"
+            <div
+              className={styles.login__btn}
               onClick={() => this.handleSubmit(validate)}
-              type="submit"
             >
               {submitButtonText}
-            </button>
+            </div>
           </div>
         )}
       </Form>

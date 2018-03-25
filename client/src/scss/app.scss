@@ -1,5 +1,36 @@
+@import "base/reset";
+@import "base/vars";
+@import "base/reboot";
+
 html,
 body {
   height: 100%;
   width: 100%;
+  margin: 0;
+  padding: 0;
+  background: map-get($master-palette, "primary");
+  background-color: #21d4fd;
+  background-image: linear-gradient(
+    19deg,
+    map-get($master-palette, "primary") 0%,
+    map-get($master-palette, "secondary") 100%
+  );
+
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  > div {
+    width: 95%;
+    height: 95%;
+    background: $grey-lightest;
+    -webkit-box-shadow: 10px 10px 50px 0px rgba($grey-base, 0.55);
+    -moz-box-shadow: 10px 10px 50px 0px rgba($grey-base, 0.55);
+    box-shadow: 10px 10px 50px 0px rgba($grey-base, 0.55);
+  }
 }

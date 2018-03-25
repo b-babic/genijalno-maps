@@ -56,7 +56,7 @@ router.post("/register", (req, res) => {
         if (err.errors.username) {
           res.status(400).json({
             success: false,
-            msg: err.errors.email.username
+            msg: err.errors.email.message
           });
           return;
         } // username errors
@@ -70,15 +70,13 @@ router.post("/register", (req, res) => {
           return;
         } // password errors
 
-        // Show failed if all else fails for some reasons
+        // Show failed if everything else fails for some reasons
         res.status(400).json({
           success: false,
           msg: "Failed to register."
         });
       } // errors
     } else {
-      // err
-
       // if no errors save the user
       res.json({
         success: true,

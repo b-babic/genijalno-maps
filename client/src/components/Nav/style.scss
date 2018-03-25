@@ -1,0 +1,97 @@
+@import "../../scss/base/vars";
+
+.navbar {
+  background: $navbar-bg-color;
+  flex-basis: 5%;
+  min-width: 100px;
+
+  ul {
+    min-height: 100%;
+    text-align: center;
+    color: $color-white;
+    padding: 4rem 0 2rem 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+
+    li {
+      margin-bottom: 30px;
+      cursor: pointer;
+      transition: all ease-out 120ms;
+      width: 100%;
+
+      .icon {
+        display: block;
+        font-size: 24px;
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+        transition: all ease 450ms;
+      } // icon
+
+      &:nth-child(1) {
+        .icon {
+          width: 60px;
+          height: 60px;
+        }
+      } // first icon
+
+      a {
+        text-indent: -9999;
+        direction: ltr;
+        color: rgba(0, 0, 0, 0);
+        width: 100%;
+        height: 100%;
+        display: block;
+        padding: 20px 0;
+      } // main sidebar link
+
+      &:nth-child(3) {
+        margin-top: auto;
+        margin-bottom: 0;
+      } // last item
+
+      .tooltip {
+        display: inline-block;
+        position: absolute;
+        background-color: $navbar-tooltip-bg-color;
+        padding: 8px 15px;
+        border-radius: 3px;
+        margin-top: -40px;
+        left: 8rem;
+        opacity: 0;
+        visibility: hidden;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+
+        &:before {
+          content: "";
+          display: block;
+          position: absolute;
+          left: -4px;
+          top: 10px;
+          transform: rotate(45deg);
+          width: 10px;
+          height: 10px;
+          background-color: inherit;
+        }
+      } // tooltip
+
+      &:hover {
+        background-color: $hover-navbar-link-color;
+
+        .tooltip {
+          visibility: visible;
+          opacity: 1;
+          color: $color-white;
+        }
+      }
+    } // single navbar item
+  } // side navbar list
+} // main nav
+
+// active style
+.active {
+  background-color: $hover-navbar-link-color;
+}

@@ -1,4 +1,5 @@
 import { PureComponent } from "react";
+import styles from "./style.scss";
 
 class Form extends PureComponent {
   constructor() {

@@ -9,6 +9,8 @@ import { ROOT_URL } from "./api";
 // action creators and constants
 import { AUTH_USER, FETCH_ADMIN_DATA, UNAUTH_USER } from "./actions/constants";
 import { getUserDataDispatcher } from "./actions/actionCreators";
+// import base styles
+import "./scss/app.scss";
 
 // on app load check for token in localstorage
 if (window.localStorage) {

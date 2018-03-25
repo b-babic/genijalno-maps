@@ -31,26 +31,29 @@ module.exports = {
       /* SCSS */
       {
         test: /\.scss?$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: [
-            {
-              loader: "css-loader"
-            },
-            {
-              loader: "postcss-loader",
-              options: {
-                config: {
-                  path: "./config/postcss.config.js"
-                }
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader:
+              "css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]"
+          },
+          {
+            loader: "postcss-loader",
+            options: {
+              config: {
+                path: "./config/postcss.config.js"
               }
-            },
-            {
-              loader: "sass-loader"
             }
-          ]
-        })
-      }
+          },
+          {
+            loader: "sass-loader"
+          }
+        ]
+      },
+      /* SVG*/
+      { test: /\.svg$/, loader: "svg-react-loader" }
     ]
   },
   output: {
