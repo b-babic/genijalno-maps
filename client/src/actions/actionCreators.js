@@ -12,7 +12,9 @@ import {
   LOADED_FIRST_USER_DATA,
   GET_USER_DATA_ERROR,
   ACTIVATE_SIDEBAR,
-  DEACTIVATE_SIDEBAR
+  DEACTIVATE_SIDEBAR,
+  SET_SELECTED_USER,
+  DELETE_SELECTED_USER
 } from "./constants";
 
 import { ROOT_URL } from "../api";
@@ -172,6 +174,17 @@ export const getUserDataDispatcher = url => {
       .catch(err => dispatch(getUserDataError(err)));
   };
 };
+
+/*************************************************/
+// SELECTED USER
+/*************************************************/
+export const setSelectedUser = payload => ({
+  type: SET_SELECTED_USER,
+  payload
+});
+export const deleteSelectedUser = () => ({
+  type: DELETE_SELECTED_USER
+});
 
 /*************************************************/
 // UI STUFF
