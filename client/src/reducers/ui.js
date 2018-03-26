@@ -1,19 +1,14 @@
 const ui = (
   state = {
-    leftPanel: "active",
-    rightPanel: ""
+    sidebar: ""
   },
   action
 ) => {
   switch (action.type) {
-    case "ACTIVATE_LEFT_PANEL":
-      return { ...state, leftPanel: "active" };
-    case "DEACTIVATE_LEFT_PANEL":
-      return { ...state, leftPanel: "" };
-    case "ACTIVATE_RIGHT_PANEL":
-      return { ...state, rightPanel: "active" };
-    case "DEACTIVATE_RIGHT_PANEL":
-      return { ...state, rightPanel: "" };
+    case "ACTIVATE_SIDEBAR":
+      return { ...state, sidebar: "active" };
+    case "DEACTIVATE_SIDEBAR":
+      return { ...state, sidebar: "" };
     default:
       return state;
   }
