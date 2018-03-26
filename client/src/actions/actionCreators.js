@@ -33,10 +33,11 @@ export const authLoaded = () => ({
   type: AUTH_LOADED
 });
 
-export const signinUser = ({ username, password }) => {
+export const signinUser = (username, password) => {
+  console.warn("SENDING", username, password);
   return function(dispatch) {
     dispatch({ type: AUTH_LOADING });
-    return fetch(`${ROOT_URL}/api/users/login`, {
+    return fetch(`${ROOT_URL}/api/auth`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -50,17 +51,27 @@ export const signinUser = ({ username, password }) => {
       .then(responseJson => {
         // if req is good & auth'd
         // update state to auth'd
-        dispatch({ type: AUTH_USER });
-        // save JWT in localStorage
-        console.warn("TOKEN", responseJson);
-        localStorage.setItem("token", responseJson.token);
-        // save admin email in localStorage
-        localStorage.setItem("adminEmail", responseJson.user.email);
-        dispatch({ type: AUTH_LOADED });
+        console.warn("RESPONSE", responseJson);
+        if (responseJson && responseJson.success === true) {
+          dispatch({ type: AUTH_USER });
+          // save JWT in localStorage
+          console.warn("TOKEN", responseJson);
+          localStorage.setItem("token", responseJson.token);
+          // save admin email in localStorage
+          localStorage.setItem("email", responseJson.email);
+          dispatch({ type: AUTH_LOADED });
+        } else {
+          dispatch(
+            authError(
+              "Your email or password is incorrect. \n Please try again."
+            )
+          );
+          dispatch({ type: AUTH_LOADED });
+        }
       })
       .catch(err => {
         dispatch(
-          authError("Your email or password is incorrect. \n Please try again.")
+          authError("Error while trying to login user. Try again later!")
         );
         dispatch({ type: AUTH_LOADED });
       });
@@ -77,34 +88,26 @@ export const signoutUser = () => {
 };
 
 // SIGN UP USER
-export const signupUser = ({
-  name,
-  email,
-  username,
-  password,
-  passwordConfirm
-}) => {
+export const signupUser = (username, password, email) => {
+  console.warn("signin up", username, password, email);
   return function(dispatch) {
     dispatch({ type: AUTH_LOADING });
-    return fetch(`${ROOT_URL}/api/users/register`, {
+    return fetch(`${ROOT_URL}/api/user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        name,
-        email,
         username,
         password,
-        passwordConfirm
+        email
       })
     })
       .then(response => response.json())
       .then(responseJson => {
-        console.warn("msg", responseJson.msg.length);
-        if (responseJson.error || responseJson.msg.length > 0) {
-          console.warn("ERROR IN RESPONSE", responseJson.error);
-          dispatch(authError(responseJson.error || responseJson.msg));
+        console.warn("MSG", responseJson);
+        if (responseJson.success === false) {
+          dispatch(authError(responseJson.message));
           dispatch({ type: AUTH_LOADED });
           return false;
         } else {
@@ -115,7 +118,7 @@ export const signupUser = ({
           // save JWT in localStorage
           localStorage.setItem("token", responseJson.token);
           // save admin email in localStorage
-          localStorage.setItem("email", responseJson.user.email);
+          localStorage.setItem("email", responseJson.email);
           dispatch({ type: AUTH_LOADED });
         }
       })
