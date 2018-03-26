@@ -3,6 +3,7 @@ const express = require("express");
   (bodyParser = require("body-parser")),
   (jwt = require("jwt-simple")),
   (User = require("../models/user")),
+  (UserData = require("../models/userData")),
   (secret = require("../options/config").secret),
   (csrf = require("../middleware/csrf")),
   (userAgent = require("express-useragent"));
@@ -183,6 +184,17 @@ api.post("/auth", (req, res) => {
           });
         }
       });
+    }
+  });
+});
+
+// get user data
+api.get("/data", (req, res) => {
+  UserData.find({}, (err, entries) => {
+    if (err) {
+      return next(err);
+    } else {
+      res.send(entries);
     }
   });
 });

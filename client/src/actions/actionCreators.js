@@ -10,7 +10,9 @@ import {
   LOADING_USER_DATA,
   LOADED_USER_DATA,
   LOADED_FIRST_USER_DATA,
-  GET_USER_DATA_ERROR
+  GET_USER_DATA_ERROR,
+  ACTIVATE_SIDEBAR,
+  DEACTIVATE_SIDEBAR
 } from "./constants";
 
 import { ROOT_URL } from "../api";
@@ -170,3 +172,13 @@ export const getUserDataDispatcher = url => {
       .catch(err => dispatch(getUserDataError(err)));
   };
 };
+
+/*************************************************/
+// UI STUFF
+/*************************************************/
+export const activateSidebar = () => ({
+  type: ACTIVATE_SIDEBAR
+});
+export const deactivateSidebar = () => ({
+  type: DEACTIVATE_SIDEBAR
+});
