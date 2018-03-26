@@ -1,42 +1,110 @@
 [
   {
+    "gender": "male",
+    "locale": "da_DK",
+    "avatar": "http://i.pravatar.cc/280?img=3",
+    "timezone": "GMT-3.5",
+    "lat": "35.48",
+    "long": "52.14",
+    "status": "off"
+  },
+  {
     "gender": "female",
-    "locale": "en_US",
-    "avatar": "https://n4.sdlcdn.com/imgs/f/s/e/26May_CottonSilk_4H-b5152.jpg",
-    "status": true,
-    "timezone": "GMT+6.5",
-    "lat": "40.730610",
-    "long": "-73.935242",
-    "isActive": false
+    "locale": "es_PR",
+    "avatar": "http://i.pravatar.cc/280?img=5",
+    "timezone": "GMT+0.5",
+    "lat": "57.9",
+    "long": "34.0",
+    "status": "off"
   },
   {
     "gender": "male",
-    "locale": "en_US",
-    "avatar": "https://n4.sdlcdn.com/imgs/f/s/e/26May_CottonSilk_4H-b5152.jpg",
-    "status": false,
+    "locale": "sq_AL",
+    "avatar": "http://i.pravatar.cc/280?img=6",
     "timezone": "GMT+5.5",
-    "lat": "‎-33.918861",
-    "long": "18.423300",
-    "isActive": false
+    "lat": "34.55",
+    "long": "55.27",
+    "status": "on"
   },
   {
     "gender": "female",
-    "locale": "en_US",
-    "avatar": "https://n4.sdlcdn.com/imgs/f/s/e/26May_CottonSilk_4H-b5152.jpg",
-    "status": true,
-    "timezone": "GMT+4.5",
-    "lat": "28.475760",
-    "long": "77.093081",
-    "isActive": false
+    "locale": "en_IN",
+    "avatar": "http://i.pravatar.cc/280?img=10",
+    "timezone": "GMT-0.5",
+    "lat": "57.9",
+    "long": "34.0",
+    "status": "on"
   },
   {
     "gender": "female",
-    "locale": "en_US",
-    "avatar": "https://n4.sdlcdn.com/imgs/f/s/e/26May_CottonSilk_4H-b5152.jpg",
-    "status": true,
+    "locale": "es_PR",
+    "avatar": "http://i.pravatar.cc/280?img=48",
+    "timezone": "GMT+5.2",
+    "lat": "34.55",
+    "long": "66.22",
+    "status": "off"
+  },
+  {
+    "gender": "female",
+    "locale": "en_IN",
+    "avatar": "http://i.pravatar.cc/280?img=49",
+    "timezone": "GMT-0.5",
+    "lat": "52.22",
+    "long": "0.48",
+    "status": "on"
+  },
+  {
+    "gender": "male",
+    "locale": "en_ZA",
+    "avatar": "http://i.pravatar.cc/280?img=11",
     "timezone": "GMT+5.5",
-    "lat": "-0.777259",
-    "long": "-91.142578",
-    "isActive": false
+    "lat": "52.22",
+    "long": "52.14",
+    "status": "on"
+  },
+  {
+    "gender": "male",
+    "locale": "zh_CN",
+    "avatar": "http://i.pravatar.cc/280?img=61",
+    "timezone": "GMT+2.5",
+    "lat": "31.10",
+    "long": "0.48",
+    "status": "on"
+  },
+  {
+    "gender": "female",
+    "locale": "en_IN",
+    "avatar": "http://i.pravatar.cc/280?img=43",
+    "timezone": "GMT+2.5",
+    "lat": "31.10",
+    "long": "5.55",
+    "status": "on"
+  },
+  {
+    "gender": "male",
+    "locale": "uk_UA",
+    "avatar": "http://i.pravatar.cc/280?img=7",
+    "timezone": "GMT+2.5",
+    "lat": "41.17",
+    "long": "134.55",
+    "status": "on"
+  },
+  {
+    "gender": "female",
+    "locale": "uk_UA",
+    "avatar": "http://i.pravatar.cc/280?img=25",
+    "timezone": "GMT-3.5",
+    "lat": "39.55",
+    "long": "57.9",
+    "status": "off"
+  },
+  {
+    "gender": "male",
+    "locale": "uk_UA",
+    "avatar": "http://i.pravatar.cc/280?img=11",
+    "timezone": "GMT+5.5",
+    "lat": "35.40",
+    "long": "57.9",
+    "status": "on"
   }
 ]

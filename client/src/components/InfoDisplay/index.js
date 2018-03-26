@@ -9,6 +9,18 @@ const getStandardDate = dateMs => {
 const InfoDisplay = ({ data }) => (
   <div className={styles.info__display}>
     <div className={styles.info__row}>
+      <label htmlFor="status">Status:</label>
+      <br />
+      <span
+        id="status"
+        className={
+          `user__status user__status--` + data.status ? `online` : `offline`
+        }
+      >
+        {data.status ? "online" : "away"}
+      </span>
+    </div>
+    <div className={styles.info__row}>
       <label htmlFor="gender">Gender:</label>
       <br />
       <span id="gender" className="user-detail">
