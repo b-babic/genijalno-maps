@@ -1,0 +1,11 @@
+.user__avatar {
+  width: 280px;
+  height: 280px;
+  background: #ccc;
+  overflow: hidden;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
