@@ -29,10 +29,7 @@ const NotFound = () => <h2>404 Not Found!</h2>;
 const AuthLayout = ({ children, ...rest }) => {
   return (
     <div className={styles.auth}>
-      <div className={styles.column}>
-        <h2 className={styles.auth__title}>Log in</h2>
-        {children}
-      </div>
+      <div className={styles.column}>{children}</div>
     </div>
   );
 };

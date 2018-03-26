@@ -18,11 +18,9 @@ class Signup extends Component {
 
     this.state = {
       fields: {
-        name: "",
-        email: "",
         username: "",
         password: "",
-        passwordConfirm: ""
+        email: ""
       }
     };
   }
@@ -37,30 +35,33 @@ class Signup extends Component {
   };
 
   handleSubmit = validate => {
-    const {
-      name,
-      email,
-      username,
-      password,
-      passwordConfirm
-    } = this.state.fields;
+    const { username, password, email } = this.state.fields;
 
     if (validate()) {
       // dispatch try login and redirect if login is success
       console.warn("SIGNING UP");
-      this.props.handleSignupUser({
-        name,
-        email,
-        username,
-        password,
-        passwordConfirm
-      });
+      this.props.handleSignupUser(username, password, email);
     }
   };
 
   componentDidMount() {
     this.props.handleResetFormError();
   }
+
+  handleRenderingErrorMessages = () => {
+    const { errorMessage } = this.props;
+    let messages = [];
+    if (errorMessage) {
+      console.warn("have errors", errorMessage);
+      messages = errorMessage.map((err, index) => (
+        <div key={index} className={styles.input__error}>
+          {err}
+        </div>
+      ));
+    }
+
+    return messages;
+  };
 
   render() {
     const {
@@ -80,22 +81,20 @@ class Signup extends Component {
       <Form
         className={styles.form}
         fields={{
-          username: this.state.fields.username,
           password: this.state.fields.password,
-          passwordConfirm: this.state.fields.passwordConfirm,
-          name: this.state.fields.name,
+          username: this.state.fields.username,
           email: this.state.fields.email
         }}
         rules={{
-          username: val => !val && "Please enter your username",
           password: val => !val && "Please enter your password",
-          passwordConfirm: val => !val && "Please enter yout password",
-          name: val => !val && "Please enter your name",
-          email: val => !val && "Please enter your email"
+          username: val => !val && "Please enter your username",
+          email: val => !val && "Please enter your username"
         }}
       >
         {(errors, validate) => (
           <div>
+            <h2 className={styles.auth__title}>Sign up</h2>
+
             <Input
               placeholder="username"
               value={this.state.fields.username || ""}
@@ -112,6 +111,7 @@ class Signup extends Component {
               onChange={({ target: { value } }) =>
                 this.handleChange("email", value)
               }
+              type="email"
             />
 
             <Input
@@ -124,29 +124,7 @@ class Signup extends Component {
               type="password"
             />
 
-            <Input
-              placeholder="passwordConfirm"
-              value={this.state.fields.passwordConfirm || ""}
-              error={errors.passwordConfirm}
-              onChange={({ target: { value } }) =>
-                this.handleChange("passwordConfirm", value)
-              }
-              type="password"
-            />
-
-            <Input
-              placeholder="name"
-              value={this.state.fields.name || ""}
-              error={errors.name}
-              onChange={({ target: { value } }) =>
-                this.handleChange("name", value)
-              }
-              type="text"
-            />
-
-            {errorMessage && (
-              <div className="form-error-text">{errorMessage}</div>
-            )}
+            {this.handleRenderingErrorMessages()}
 
             <div
               className={styles.login__btn}
@@ -168,16 +146,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleSignupUser: ({ name, email, username, password, passwordConfirm }) => {
-    dispatch(
-      signupUser({
-        name,
-        email,
-        username,
-        password,
-        passwordConfirm
-      })
-    );
+  handleSignupUser: (username, password, email) => {
+    dispatch(signupUser(username, password, email));
   },
   handleResetFormError: () => {
     dispatch(authErrorReset());

@@ -1,3 +1,5 @@
+@import "../../scss/base/vars";
+
 // login button
 .login__btn {
   background-image: linear-gradient(to right, #a4789f, #4a54aa);
@@ -31,4 +33,25 @@
     box-shadow 0.1s ease, background 0.1s ease;
   will-change: "";
   -webkit-tap-highlight-color: transparent;
+}
+
+// error state
+.input__error {
+  text-align: left;
+  color: $color-danger;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+.auth__title {
+  border: none;
+  margin: calc(2rem - 0.14285714em) 0 1rem 1rem;
+  padding: 0 0;
+  line-height: 1.28571429em;
+  text-transform: none;
+  color: #b4bdc7;
+  font-weight: 300;
+  text-align: left;
 }

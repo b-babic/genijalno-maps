@@ -1,54 +1,25 @@
-const express = require('express'),
-    mongoose = require('mongoose'),
-    bodyParser = require('body-parser'),
-    cors = require('cors'),
-    path = require('path'),
-    passport = require('passport'),
-    config = require('./config/db');
+const express = require("express"),
+  mongoose = require("mongoose"),
+  morgan = require("morgan"),
+  cors = require("cors"),
+  database = require("./options/config").db;
 
-// Use node's default promise instead of Mongoose promise library
+mongoose.connect(database);
 mongoose.Promise = global.Promise;
+const app = express(),
+  db = mongoose.connection;
 
-// connect to db 
-mongoose.connect(config.db);
-let db = mongoose.connection;
-
-// on db open 
-db.on('open', () => {
-    console.log('%c Connected to the database! ', 'background: #222; color: #bada55');
+db.once("open", () => {
+  console.log("Connected to MongoDB.");
 });
 
-// on db error 
-db.on('error', (err) => {
-    console.log('%c Connected to the database! ' + err, 'background: #222; color: #FA4659');
-});
+const port = require("./options/config").port,
+  apiRoutes = require("./routes/api");
 
-// initialize express
-const app = express();
-
-// set up public folder if needed
-app.use(express.static('public'));
-// passport middleware for dummy auth
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(cors());
-// passport config
-require('./config/passport')(passport);
+app.use(morgan("dev"));
+app.use("/api", apiRoutes);
 
-//bodyParser after routes initialization
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
-app.use(bodyParser.json({
-    type: '*/*'
-}));
-
-// routes middleware 
-app.use('/api/users', require('./routes/users'));
-app.use('/api/seed', require('./routes/userData'));
-// finally start the server 
-const port = process.env.PORT || 3000;
-
-app.listen(3000, () => {
-    console.log('%c Listening on port ' + port, 'background: #222; color: #FA4659');
-})
+app.listen(port, () => {
+  console.log(`App up at ${port}!`);
+});

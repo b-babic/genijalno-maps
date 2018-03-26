@@ -32,17 +32,6 @@
     background: $color-white;
     padding: 2rem;
 
-    .auth__title {
-      border: none;
-      margin: calc(2rem - 0.14285714em) 0 1rem 1rem;
-      padding: 0 0;
-      line-height: 1.28571429em;
-      text-transform: none;
-      color: #b4bdc7;
-      font-weight: 300;
-      text-align: left;
-    }
-
     &:nth-of-type(2) {
       position: relative;
       min-height: 1em;

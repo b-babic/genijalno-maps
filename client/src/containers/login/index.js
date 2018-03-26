@@ -37,12 +37,36 @@ class Login extends Component {
 
   handleSubmit = validate => {
     const { username, password } = this.state.fields;
-
+    console.warn("username and pw", username, password);
     if (validate()) {
       // dispatch try login and redirect if login is success
       console.warn("SIGNIN IN");
       this.props.handleSigninUser(username, password);
     }
+  };
+
+  handleRenderingErrorMessages = () => {
+    const { errorMessage } = this.props;
+    let messages = [];
+    let finalError = null;
+
+    console.group("login messages");
+    console.warn("errArr, messages", messages, errorMessage);
+    console.groupEnd();
+
+    if (errorMessage && typeof errorMessage !== "string") {
+      console.error("MAPING");
+      messages = errorMessage.map((err, index) => (
+        <div key={index} className={styles.input__error}>
+          {err}
+        </div>
+      ));
+      finalError = messages;
+    } else {
+      return <div className={styles.input__error}>{errorMessage}</div>;
+    }
+
+    return finalError;
   };
 
   render() {
@@ -63,6 +87,7 @@ class Login extends Component {
       >
         {(errors, validate) => (
           <div>
+            <h2 className={styles.auth__title}>Log in</h2>
             <Input
               placeholder="username"
               value={this.state.fields.username || ""}
@@ -81,9 +106,7 @@ class Login extends Component {
               type="password"
             />
 
-            {errorMessage && (
-              <div className="form-error-text">{errorMessage}</div>
-            )}
+            {this.handleRenderingErrorMessages()}
 
             <div
               className={styles.login__btn}
@@ -108,8 +131,9 @@ const mapDispatchToProps = dispatch => ({
   handleAuthLoading: () => {
     dispatch(authLoading());
   },
-  handleSigninUser: ({ username, password }) => {
-    dispatch(signinUser({ username, password }));
+  handleSigninUser: (username, password) => {
+    console.warn("HANDLE SIGNIN USER", username, password);
+    dispatch(signinUser(username, password));
   },
   handleResetFormError: () => {
     dispatch(authErrorReset());

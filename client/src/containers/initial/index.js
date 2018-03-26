@@ -8,7 +8,6 @@ class LandingAuth extends Component {
     return (
       <div className={styles.auth}>
         <div className={styles.column}>
-          <h2 className={styles.auth__title}>Log in</h2>
           <Login />
         </div>
         <div className={styles.column}>
