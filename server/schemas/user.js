@@ -45,6 +45,9 @@ const schema = mongoose.Schema({
     type: Date,
     default: Date.now()
   }
+},
+{
+  usePushEach: true
 });
 
 schema.pre("save", function(next) {
