@@ -4,14 +4,18 @@ const express = require("express"),
   cors = require("cors"),
   database = require("./options/config").db;
 
-mongoose.connect(database);
-mongoose.Promise = global.Promise;
-const app = express(),
-  db = mongoose.connection;
+// initialize mongoose (deprecation warningu sing regular Promise, using bluebird instead);
+mongoose.Promise = require('bluebird');
+mongoose.connect(database, {server: { poolSize: 5 }});
+const conn = mongoose.connection;
 
-db.once("open", () => {
-  console.log("Connected to MongoDB.");
+conn.once('open', function ()
+{
+    console.log("Mongoose connection opened.")
 });
+
+// Initialize express and set up routes
+const app = express();
 
 const port = require("./options/config").port,
   apiRoutes = require("./routes/api");
