@@ -37,7 +37,6 @@ class Login extends Component {
 
   handleSubmit = validate => {
     const { username, password } = this.state.fields;
-    console.warn("username and pw", username, password);
     if (validate()) {
       // dispatch try login and redirect if login is success
       console.warn("SIGNIN IN");
@@ -55,7 +54,6 @@ class Login extends Component {
     console.groupEnd();
 
     if (errorMessage && typeof errorMessage !== "string") {
-      console.error("MAPING");
       messages = errorMessage.map((err, index) => (
         <div key={index} className={styles.input__error}>
           {err}
@@ -132,7 +130,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch(authLoading());
   },
   handleSigninUser: (username, password) => {
-    console.warn("HANDLE SIGNIN USER", username, password);
     dispatch(signinUser(username, password));
   },
   handleResetFormError: () => {

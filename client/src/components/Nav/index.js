@@ -3,11 +3,16 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import styles from "./style.scss";
 import cx from "classnames";
-
 //icons
 import HomeIcon from "./Icons/home.svg";
 import InfoIcon from "./Icons/info.svg";
 import ProfileIcon from "./Icons/user.svg";
+// props
+import PropTypes from "prop-types";
+
+const headerProps = {
+    isAuthenticated: PropTypes.bool
+};
 
 class PrimaryHeader extends React.Component {
   constructor(props) {
@@ -63,6 +68,8 @@ class PrimaryHeader extends React.Component {
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.authenticated
 });
+
+PrimaryHeader.propTypes = headerProps;
 
 export default connect(mapStateToProps, null, null, { pure: false })(
   PrimaryHeader

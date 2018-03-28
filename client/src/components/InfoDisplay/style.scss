@@ -1,5 +1,4 @@
 @import "../../scss/base/mixins";
-
 .info__display {
   padding: 20px;
   box-sizing: border-box;
@@ -7,24 +6,19 @@
     overflow-y: scroll;
     padding: 15px 15px 50px 15px;
     max-height: 65%;
-
     &::-webkit-scrollbar {
       width: 5px;
     }
-
     &::-webkit-scrollbar-track {
       background: white;
     }
-
     &::-webkit-scrollbar-thumb {
       background: rgba(54, 52, 70, 0.8);
     }
-
     &::-webkit-scrollbar-thumb:hover {
       background: rgba(54, 52, 70, 0.8);
     }
   }
-
 }
 
 .user__details {
@@ -38,7 +32,6 @@
   @include md-large() {
     font-size: 0.8rem;
   }
-
   label {
     font-weight: 500;
   }

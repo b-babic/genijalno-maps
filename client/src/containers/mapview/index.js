@@ -27,7 +27,6 @@ export const Mapview = compose(
           position={{ lat: parseInt(marker.lat), lng: parseInt(marker.long) }}
           onClick={() => props.onMarkerTapped(marker, index)}
         >
-          {console.warn("markers", marker)}
           {marker.isActive && (
             <InfoWindow
               onCloseClick={() => props.onMarkerTapped(marker, index)}

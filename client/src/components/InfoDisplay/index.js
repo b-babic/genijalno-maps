@@ -1,6 +1,12 @@
 import React from "react";
 import styles from "./style.scss";
 
+import PropTypes from "prop-types";
+
+const infoProps = {
+  data: PropTypes.any
+};
+
 const getStandardDate = dateMs => {
   let d = new Date(dateMs);
   return d.toLocaleString();
@@ -64,5 +70,7 @@ const InfoDisplay = ({ data }) => (
     </div>
   </div>
 );
+
+InfoDisplay.propTypes = infoProps;
 
 export default InfoDisplay;

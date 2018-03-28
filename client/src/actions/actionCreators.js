@@ -38,7 +38,6 @@ export const authLoaded = () => ({
 });
 
 export const signinUser = (username, password) => {
-  console.warn("SENDING", username, password);
   return function(dispatch) {
     dispatch({ type: AUTH_LOADING });
     return fetch(`${ROOT_URL}/api/auth`, {
@@ -55,11 +54,9 @@ export const signinUser = (username, password) => {
       .then(responseJson => {
         // if req is good & auth'd
         // update state to auth'd
-        console.warn("RESPONSE", responseJson);
         if (responseJson && responseJson.success === true) {
           dispatch({ type: AUTH_USER });
           // save JWT in localStorage
-          console.warn("TOKEN", responseJson);
           localStorage.setItem("token", responseJson.token);
           // save admin email in localStorage
           localStorage.setItem("email", responseJson.email);
@@ -93,7 +90,6 @@ export const signoutUser = () => {
 
 // SIGN UP USER
 export const signupUser = (username, password, email) => {
-  console.warn("signin up", username, password, email);
   return function(dispatch) {
     dispatch({ type: AUTH_LOADING });
     return fetch(`${ROOT_URL}/api/user`, {
@@ -109,7 +105,6 @@ export const signupUser = (username, password, email) => {
     })
       .then(response => response.json())
       .then(responseJson => {
-        console.warn("MSG", responseJson);
         if (responseJson.success === false) {
           dispatch(authError(responseJson.message));
           dispatch({ type: AUTH_LOADED });
@@ -117,7 +112,6 @@ export const signupUser = (username, password, email) => {
         } else {
           // if req is good & auth'd
           // update state to auth'd
-          console.warn("SHOULD AUTH NOW AND FETCH EMAIL", responseJson);
           dispatch({ type: AUTH_USER });
           // save JWT in localStorage
           localStorage.setItem("token", responseJson.token);
@@ -127,9 +121,7 @@ export const signupUser = (username, password, email) => {
         }
       })
       .catch(err => {
-        // console.log('error in signupUser: ', err);
         // dispatch(authError(err.response.data.error));
-        console.warn("ERROR IN SIGNUP");
         dispatch(authError("Error in signup..."));
         dispatch({ type: AUTH_LOADED });
       });

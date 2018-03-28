@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
+const authProps = {
+    authenticated: PropTypes.bool
+};
 const requireAuth = ComposeComponent => {
   class Authentication extends Component {
     render() {
@@ -20,5 +24,7 @@ const requireAuth = ComposeComponent => {
   });
   return connect(mapStateToProps, null)(Authentication);
 };
+
+requireAuth.propTypes = authProps;
 
 export default requireAuth;

@@ -78,10 +78,8 @@ api.post("/user", (req, res) => {
 
         user.save((err, doc) => {
           if (err) {
-            console.log("Error Inserting New Data");
             if (err.name == "ValidationError") {
               for (field in err.errors) {
-                //console.log(err.errors[field].message);
                 errors.push(err.errors[field].message);
               }
             }
