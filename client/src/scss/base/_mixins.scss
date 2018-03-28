@@ -1,0 +1,7 @@
+// Media queries
+@mixin md-large {
+  @media (max-width: "1367px") {
+    @content;
+  }
+}
+
